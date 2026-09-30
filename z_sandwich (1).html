@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Z SANDWICH | المنيو</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            /* Kraft Paper & Dark Olive Palette derived directly from packaging */
+            --bg-kraft: #E3D3C1;
+            --bg-kraft-card: #FAF4EB;
+            --bg-kraft-dark: #D4BF9A;
+            --text-dark: #222920;
+            --text-muted: #5E625A;
+            --olive-brand: #2D3A2C;
+            --olive-accent: #3F4F3D;
+            --border-kraft: #C2B095;
+            --font-ar: 'Cairo', sans-serif;
+            --font-en: 'Montserrat', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-kraft);
+            background-image: radial-gradient(rgba(45, 58, 44, 0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
+            color: var(--text-dark);
+            font-family: var(--font-ar);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px 16px 40px 16px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 520px;
+            margin: 0 auto;
+        }
+
+        /* Header & Brand Identity */
+        header {
+            text-align: center;
+            padding: 20px 10px 15px 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 2px dashed var(--border-kraft);
+            margin-bottom: 20px;
+        }
+
+        .logo-wrap {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 6px;
+        }
+
+        /* Exact Brush Z SVG from uploaded packaging */
+        .z-logo-svg {
+            width: 58px;
+            height: 58px;
+            fill: var(--olive-brand);
+            flex-shrink: 0;
+        }
+
+        .brand-title-box {
+            text-align: right;
+        }
+
+        .brand-title {
+            font-family: var(--font-en);
+            font-size: 26px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            color: var(--olive-brand);
+            line-height: 1;
+        }
+
+        .menu-badge {
+            display: inline-block;
+            font-family: var(--font-ar);
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-top: 4px;
+        }
+
+        /* Social Quick Links Bar */
+        .social-bar {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 25px;
+            width: 100%;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background-color: var(--bg-kraft-card);
+            color: var(--olive-brand);
+            border: 1px solid var(--border-kraft);
+            text-decoration: none;
+            font-size: 18px;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .social-btn:active {
+            transform: scale(0.95);
+            background-color: var(--olive-brand);
+            color: var(--bg-kraft);
+        }
+
+        /* Category Nav / Buttons */
+        .category-tabs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .tab-btn {
+            background: var(--bg-kraft-card);
+            border: 2px solid var(--border-kraft);
+            border-radius: 12px;
+            padding: 16px 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.04);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .tab-btn .tab-en {
+            font-family: var(--font-en);
+            font-weight: 800;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            color: var(--text-muted);
+        }
+
+        .tab-btn .tab-ar {
+            font-family: var(--font-ar);
+            font-weight: 800;
+            font-size: 17px;
+            color: var(--olive-brand);
+        }
+
+        .tab-btn.active {
+            background-color: var(--olive-brand);
+            border-color: var(--olive-brand);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 12px rgba(45, 58, 44, 0.2);
+        }
+
+        .tab-btn.active .tab-en,
+        .tab-btn.active .tab-ar {
+            color: #FAF4EB;
+        }
+
+        /* Section Container */
+        .menu-section {
+            display: none;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .menu-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 12px;
+            margin-bottom: 16px;
+            border-bottom: 1.5px solid var(--border-kraft);
+        }
+
+        .section-header h2 {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--olive-brand);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-header span {
+            font-family: var(--font-en);
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text-muted);
+        }
+
+        /* Empty state placeholder */
+        .empty-placeholder {
+            background: var(--bg-kraft-card);
+            border: 2px dashed var(--border-kraft);
+            border-radius: 12px;
+            padding: 35px 20px;
+            text-align: center;
+            color: var(--text-muted);
+        }
+
+        .empty-placeholder i {
+            font-size: 32px;
+            color: var(--olive-brand);
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .empty-placeholder p {
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 13px;
+            color: var(--text-muted);
+            padding-top: 15px;
+            border-top: 1px solid var(--border-kraft);
+            width: 100%;
+        }
+
+        footer strong {
+            color: var(--olive-brand);
+            font-family: var(--font-en);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="logo-wrap">
+                <!-- Custom Brush Z Vector Matching Packaging Logo -->
+                <svg class="z-logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M 18 22 C 35 20, 68 18, 82 22 C 85 23, 75 29, 65 35 C 50 45, 32 58, 20 72 C 16 77, 22 76, 32 75 C 52 73, 70 72, 85 75 C 80 82, 45 83, 22 83 C 15 83, 12 76, 20 68 C 36 52, 58 36, 75 25 C 60 25, 35 26, 18 22 Z" />
+                    <path d="M 60 84 C 72 82, 82 80, 88 82 C 83 87, 70 87, 60 84 Z" opacity="0.8" />
+                </svg>
+                <div class="brand-title-box">
+                    <div class="brand-title">Z SANDWICH</div>
+                    <div class="menu-badge">المنيو | MENU</div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Social Links Bar -->
+        <div class="social-bar">
+            <a href="https://wa.me/201106244592" target="_blank" class="social-btn" title="WhatsApp">
+                <i class="fa-brands fa-whatsapp"></i>
+            </a>
+            <a href="https://www.facebook.com/share/188hc1KFFJ/" target="_blank" class="social-btn" title="Facebook">
+                <i class="fa-brands fa-facebook-f"></i>
+            </a>
+            <a href="https://www.instagram.com/zsandwich1?stkn=MTYyM2J5c2J5eDRhaw==" target="_blank" class="social-btn" title="Instagram">
+                <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="https://www.tiktok.com/@zsandwich1?_r=1&_t=ZS-9A1eM1hxMMZ" target="_blank" class="social-btn" title="TikTok">
+                <i class="fa-brands fa-tiktok"></i>
+            </a>
+        </div>
+
+        <!-- Main Categories Buttons -->
+        <div class="category-tabs">
+            <button class="tab-btn active" onclick="switchCategory('sandwiches')">
+                <span class="tab-ar">سندوتشات</span>
+                <span class="tab-en">Sandwiches</span>
+            </button>
+            <button class="tab-btn" onclick="switchCategory('drinks')">
+                <span class="tab-ar">مشروبات غازية</span>
+                <span class="tab-en">Soft Drinks</span>
+            </button>
+        </div>
+
+        <!-- Sandwiches Section -->
+        <div id="sandwiches" class="menu-section active">
+            <div class="section-header">
+                <h2><i class="fa-solid fa-burger"></i> سندوتشات</h2>
+                <span>Sandwiches</span>
+            </div>
+            
+            <div class="items-grid" id="sandwiches-list">
+                <div class="empty-placeholder">
+                    <i class="fa-solid fa-utensils"></i>
+                    <p>أصناف السندوتشات ستتم إضافتها قريباً</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Soft Drinks Section -->
+        <div id="drinks" class="menu-section">
+            <div class="section-header">
+                <h2><i class="fa-solid fa-bottle-water"></i> مشروبات غازية</h2>
+                <span>Soft Drinks</span>
+            </div>
+            
+            <div class="items-grid" id="drinks-list">
+                <div class="empty-placeholder">
+                    <i class="fa-solid fa-glass-water"></i>
+                    <p>أصناف المشروبات ستتم إضافتها قريباً</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <strong>Z SANDWICH</strong> &copy; 2026
+        </footer>
+    </div>
+
+    <script>
+        function switchCategory(categoryId) {
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            if (categoryId === 'sandwiches') {
+                buttons[0].classList.add('active');
+            } else if (categoryId === 'drinks') {
+                buttons[1].classList.add('active');
+            }
+
+            const sections = document.querySelectorAll('.menu-section');
+            sections.forEach(sec => sec.classList.remove('active'));
+
+            const targetSection = document.getElementById(categoryId);
+            if (targetSection) {
+                targetSection.classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>
